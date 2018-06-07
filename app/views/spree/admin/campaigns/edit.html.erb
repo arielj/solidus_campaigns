@@ -1,0 +1,41 @@
+<% content_for :page_title do %>
+   <%= Spree.t(:edit) %>: <%= @campaign.title %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li><%= button_link_to Spree.t(:back_to_campaigns_list), spree.admin_campaigns_url %></li>
+<% end %>
+
+<%= render "spree/shared/error_messages", :target => @campaign %>
+
+<%= form_for [:admin, @campaign] do |f| %>
+  <fieldset class="no-border-top">
+    <%= render :partial => f %>
+    <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>
+
+<div class="row">
+  <div class="col-8">
+    <%= label_tag :products %><br />
+    <table class="table">
+      <%- @campaign.products.each do |product| %>
+        <tr>
+          <td><%= product.id %></td>
+          <td><%= product.name %></td>
+          <td>
+            <%= link_to t(:show), admin_product_path(product) %>
+            <%= link_to t(:delete), remove_product_admin_campaign_path(@campaign, product_slug: product.slug), method: :patch %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <%= form_for [:admin, @campaign], url: {action: :add_product} do |f| %>
+      <%= f.field_container :products do %>
+        <%= label_tag Spree.t(:new) %>
+        <%= text_field_tag :product_slug, '', placeholder: Spree.t(:slug), class: 'fullwidth' %>
+      <% end %>
+      <%= f.submit Spree.t(:add) %>
+    <% end %>
+  </div>
+</div>

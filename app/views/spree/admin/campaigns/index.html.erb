@@ -1,0 +1,50 @@
+<% content_for :page_title do %>
+   <%= Spree.t(:campaigns) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li><%= button_link_to Spree.t(:new_campaign), new_object_url %></li>
+<% end %>
+
+<% if @campaigns.any? %>
+  <table class="index">
+    <colgroup>
+      <col style="width: 35%">
+      <col style="width: 15%">
+      <col style="width: 15%">
+      <col style="width: 15%">
+      <col style="width: 20%">
+    </colgroup>
+    <thead>
+      <tr>
+        <th class="title"><%= t(:title, scope: 'activerecord.attributes.spree/campaign') %></th>
+        <th class="date"><%= t(:start_at, scope: 'activerecord.attributes.spree/campaign') %></th>
+        <th class="date"><%= t(:end_at, scope: 'activerecord.attributes.spree/campaign') %></th>
+        <th class=""><%= t(:status, scope: 'activerecord.attributes.spree/campaign') %></th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @campaigns.each do |campaign| %>
+        <tr class="<%= cycle('odd', 'even') %>" id="<%= spree_dom_id campaign %>">
+          <td><%= campaign.title %></td>
+          <td><%= l( campaign.start_at) %></td>
+          <td><%= l( campaign.end_at) %></td>
+          <td><%= campaign.status %></td>
+          <td class="actions">
+            <%= link_to_edit campaign, :no_text => true %>
+            <%= link_to_delete campaign, :no_text => true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @campaigns %>
+<% else %>
+  <div class="alpha twelve columns no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/campaign')) %>,
+    <%= link_to Spree.t(:add_one), spree.new_admin_campaign_path %>!
+  </div>
+<% end %>
