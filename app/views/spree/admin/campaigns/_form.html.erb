@@ -2,13 +2,27 @@
   <div class="col-8">
     <%= form.field_container :title do %>
       <%= form.label :title %> <span class="required">*</span><br />
-      <%= form.text_field :title, :class => 'fullwidth title' %>
+      <%= form.text_field :title, class: 'fullwidth title' %>
       <%= form.error_message_on :title %>
     <% end %>
-
+  </div>
+</div>
+<%- if @campaign.persisted? -%>
+  <div class="row">
+    <div class="col-8">
+      <%= form.field_container :slug do %>
+        <%= form.label :slug %> <span class="required">*</span><br />
+        <%= form.text_field :slug, class: 'fullwidth slug' %>
+        <%= form.error_message_on :slug %>
+      <% end %>
+    </div>
+  </div>
+<%- end -%>
+<div class="row">
+  <div class="col-8">
     <%= form.field_container :description do %>
       <%= form.label :description %> <span class="required">*</span><br />
-      <%= form.text_area :description, :class => 'fullwidth description' %>
+      <%= form.text_area :description, class: 'fullwidth description' %>
       <%= form.error_message_on :description %>
     <% end %>
   </div>
@@ -20,11 +34,11 @@
       <%= form.label attr %><br />
       <%= form.error_message_on attr %>
       <% if @campaign.send("#{attr}?") %>
-        <% at = l(@campaign.send(attr), :format => Spree.t('date_picker.format')) %>
+        <% at = l(@campaign.send(attr), format: Spree.t('date_picker.format')) %>
       <% else %>
         <% at = nil %>
       <% end %>
-      <%= form.text_field attr, :value => at, :class => 'datepicker fullwidth' %>
+      <%= form.text_field attr, value: at, class: 'datepicker fullwidth' %>
     <% end %>
   </div>
   <% end %>

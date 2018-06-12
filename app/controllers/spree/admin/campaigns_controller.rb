@@ -1,17 +1,21 @@
 class Spree::Admin::CampaignsController < Spree::Admin::ResourceController
 
   def add_product
-    campaign = Spree::Campaign.find(params[:id])
+    campaign = find_resource
     product = Spree::Product.find_by(slug: params[:product_slug])
     campaign.products << product unless campaign.products.include?(product)
     redirect_back fallback_location: edit_admin_campaign_path(campaign)
   end
 
   def remove_product
-    campaign = Spree::Campaign.find(params[:id])
+    campaign = find_resource
     product = Spree::Product.find_by(slug: params[:product_slug])
     campaign.products.destroy(product) if campaign.products.include?(product)
     redirect_back fallback_location: edit_admin_campaign_path(campaign)
+  end
+
+  def find_resource
+    Spree::Campaign.friendly.find(params[:id])
   end
 
 private

@@ -7,7 +7,6 @@ Spree::Core::Engine.routes.draw do
       end
     end
   end
-  # constraints(Spree::StaticPage) do
-  #   get '/(*path)', :to => 'static_content#show', :as => 'static'
-  # end
+
+  get "/campaign/:slug", to: 'campaigns#show', as: :show_campaign
 end

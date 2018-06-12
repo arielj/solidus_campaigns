@@ -33,7 +33,7 @@
     <%= form_for [:admin, @campaign], url: {action: :add_product} do |f| %>
       <%= f.field_container :products do %>
         <%= label_tag Spree.t(:new) %>
-        <%= text_field_tag :product_slug, '', placeholder: Spree.t(:slug), class: 'fullwidth' %>
+        <%= text_field_tag :product_slug, '', placeholder: :product_slug, class: 'fullwidth' %>
       <% end %>
       <%= f.submit Spree.t(:add) %>
     <% end %>
