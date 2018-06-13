@@ -28,6 +28,15 @@
   </div>
 </div>
 <div class="row">
+  <div class="col-8">
+    <%= form.field_container :summary do %>
+      <%= form.label :summary %> <span class="required">*</span><br />
+      <%= form.text_area :summary, class: 'fullwidth summary' %>
+      <%= form.error_message_on :summary %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
   <%- [:start_at, :end_at].each do |attr| %>
   <div class="col-4">
     <%= form.field_container attr do %>
@@ -43,3 +52,14 @@
   </div>
   <% end %>
 </div>
+<%- if @campaign.persisted? -%>
+  <div class="row">
+    <div class="col-8">
+      <%= form.field_container :status do %>
+        <%= form.label :status %> <span class="required">*</span><br />
+        <%= form.select :status, options_for_select(Spree::Campaign.statuses_for_select), {}, class: 'wullwidth status' %>
+        <%= form.error_message_on :status %>
+      <% end %>
+    </div>
+  </div>
+<%- end -%>
