@@ -29,8 +29,8 @@
       <% @campaigns.each do |campaign| %>
         <tr class="<%= cycle('odd', 'even') %>" id="<%= spree_dom_id campaign %>">
           <td><%= campaign.title %></td>
-          <td><%= l( campaign.start_at) %></td>
-          <td><%= l( campaign.end_at) %></td>
+          <td><%= l( campaign.start_at) rescue '-' %></td>
+          <td><%= l( campaign.end_at) rescue '-' %></td>
           <td><%= campaign.status %></td>
           <td class="actions">
             <%= link_to_edit campaign, :no_text => true %>
