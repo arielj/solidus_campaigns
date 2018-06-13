@@ -14,6 +14,13 @@ class Spree::Admin::CampaignsController < Spree::Admin::ResourceController
     redirect_back fallback_location: edit_admin_campaign_path(campaign)
   end
 
+  def search_products
+    campaign = find_resource
+    pids = campaign.products.pluck(:id)
+    products = Spree::Product.in_name_or_description(params[:q]).where.not(id: pids).limit(8)
+    render json: products.map{|p| {slug: p.slug, name: p.name, image_url: p.display_image.attachment.url}}.to_json
+  end
+
   def find_resource
     Spree::Campaign.friendly.find(params[:id])
   end

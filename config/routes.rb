@@ -2,8 +2,9 @@ Spree::Core::Engine.routes.draw do
   namespace :admin do
     resources :campaigns do
       member do
-        patch :add_product
+        post :add_product
         patch :remove_product
+        get :search_products
       end
     end
   end
