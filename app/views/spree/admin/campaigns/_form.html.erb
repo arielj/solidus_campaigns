@@ -52,14 +52,29 @@
   </div>
   <% end %>
 </div>
-<%- if @campaign.persisted? -%>
-  <div class="row">
-    <div class="col-8">
-      <%= form.field_container :status do %>
-        <%= form.label :status %> <span class="required">*</span><br />
-        <%= form.select :status, options_for_select(Spree::Campaign.statuses_for_select), {}, class: 'wullwidth status' %>
-        <%= form.error_message_on :status %>
+<div class="row">
+  <div class="col-8">
+    <%= form.field_container :image do %>
+      <%= form.label :image %> <span class="required">*</span><br />
+      <%= form.file_field :image, class: 'fullwidth image', accept: 'image/png,image/gif,image/jpeg' %>
+      <% if @campaign.image.exists? %>
+        <%= label_tag :current_image %>
+        <div class="image_preview">
+          <%= link_to @campaign.image.url, target: '_blank' do %>
+            <%= image_tag @campaign.image.url(:thumb) %>
+          <% end %>
+        </div>
       <% end %>
-    </div>
+      <%= form.error_message_on :image %>
+    <% end %>
   </div>
-<%- end -%>
+</div>
+<div class="row">
+  <div class="col-8">
+    <%= form.field_container :status do %>
+      <%= form.label :status %> <span class="required">*</span><br />
+      <%= form.select :status, options_for_select(Spree::Campaign.statuses_for_select), {}, class: 'wullwidth status' %>
+      <%= form.error_message_on :status %>
+    <% end %>
+  </div>
+</div>
