@@ -20,3 +20,6 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+#crop_campaign_image_modal .buttons {
+  margin-top: 2rem;
+}
