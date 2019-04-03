@@ -19,6 +19,7 @@ class Spree::Campaign < ActiveRecord::Base
 
   has_attached_file :image, styles: { resized: "900x320", thumb: '421x100' }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  crop_attached_file :image
 
   def self.statuses_for_select
     ds = I18n.t('campaign.statuses', default: [['Active','Inactive']])

@@ -4,7 +4,7 @@
 Gem::Specification.new do |s|
     s.name = "solidus_campaigns".freeze
     s.version = "1.0.0"
-  
+
     s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
     s.require_paths = ["lib".freeze]
     s.authors = ["Ariel Juodziukynas".freeze]
@@ -18,12 +18,12 @@ Gem::Specification.new do |s|
     s.rubygems_version = "2.6.14".freeze
     s.summary = "SolidusCampaigns: A Solidus campaigns solution".freeze
     #s.test_files = ["spec/models/spree/blog_entry_spec.rb".freeze, "spec/requests/admin/blog_entries_spec.rb".freeze, "spec/requests/admin/edit_user_spec.rb".freeze, "spec/requests/alternative_route_spec.rb".freeze, "spec/requests/blog_entries_spec.rb".freeze, "spec/requests/blog_widgets_spec.rb".freeze, "spec/requests/rss_feed_spec.rb".freeze, "spec/spec_helper.rb".freeze, "spec/support/authentication_helpers.rb".freeze, "spec/support/image.png".freeze]
-  
+
     s.installed_by_version = "2.6.14" if s.respond_to? :installed_by_version
-  
+
     if s.respond_to? :specification_version then
       s.specification_version = 4
-  
+
       if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
         s.add_runtime_dependency(%q<solidus>.freeze, ["> 1.0"])
         s.add_runtime_dependency(%q<deface>.freeze, ["~> 1"])
@@ -35,4 +35,5 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<solidus>.freeze, ["> 1.0"])
       s.add_dependency(%q<deface>.freeze, ["~> 1"])
     end
+    s.add_dependency('papercrop')
   end

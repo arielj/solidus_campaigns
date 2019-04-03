@@ -65,7 +65,22 @@
           <% end %>
         </div>
       <% end %>
+      <%= link_to 'Recortar', '', id: 'crop_campaign_image', class: 'button' %>
+      <%= form.hidden_field :image_crop_x -%>
+      <%= form.hidden_field :image_crop_y -%>
+      <%= form.hidden_field :image_crop_w -%>
+      <%= form.hidden_field :image_crop_h -%>
       <%= form.error_message_on :image %>
+      <div id='crop_campaign_image_modal'>
+        <div class='content'>
+          <img id='cropper' title='image to crop' src='<%= @campaign.image.url(:original) rescue '' -%>'/>
+          <div class='buttons'>
+            <a class='accept button'>Aceptar</a>
+            <a class='cancel button'>Cancelar</a>
+          </div>
+        </div>
+      </div>
+
     <% end %>
   </div>
 </div>

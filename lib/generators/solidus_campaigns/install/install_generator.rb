@@ -4,8 +4,15 @@ module SolidusCampaigns
       class_option :auto_run_migrations, type: :boolean, default: false
 
       def add_javascripts
+        append_file 'vendor/assets/javascripts/spree/backend/all.js', "//= require spree/backend/croppr\n"
         append_file 'vendor/assets/javascripts/spree/backend/all.js', "//= require spree/backend/solidus_campaigns\n"
       end
+
+      def add_stylesheets
+        append_file 'vendor/assets/stylesheets/spree/backend/all.js', "*= require spree/backend/croppr\n"
+        append_file 'vendor/assets/stylesheets/spree/backend/all.js', "*= require spree/backend/solidus_campaigns\n"
+      end
+
 
       def add_migrations
         run 'bundle exec rake railties:install:migrations FROM=solidus_campaigns'
