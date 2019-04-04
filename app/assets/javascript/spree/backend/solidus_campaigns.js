@@ -37,6 +37,7 @@ $(document).on('ready', function(){
   })
 
   if ($('#crop_campaign_image').length) {
+    campaignImageAspectRatio = document.getElementById('crop_campaign_image').dataset.aspectRatio;
     cropCampaignModal = document.getElementById('crop_campaign_image_modal');
     $('#crop_campaign_image').on('click', function(e){
       e.preventDefault();
@@ -99,9 +100,10 @@ function closeCampaignCropModal() {
 }
 
 function initCampaignCrop() {
+  aspect = campaignImageAspectRatio == '' ? 5/16 : parseFloat(campaignImageAspectRatio);
   var cropperObject = new Croppr('#cropper', {
     onCropEnd: setCropprValuesOnCampaign,
     startSize: [100,100,'%'],
-    aspectRatio: 5/16
+    aspectRatio: aspect
   });
 }
