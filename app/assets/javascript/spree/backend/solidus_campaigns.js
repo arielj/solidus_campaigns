@@ -100,7 +100,7 @@ function closeCampaignCropModal() {
 }
 
 function initCampaignCrop() {
-  aspect = campaignImageAspectRatio == '' ? 5/16 : parseFloat(campaignImageAspectRatio);
+  aspect = campaignImageAspectRatio == '' ? null : parseFloat(campaignImageAspectRatio);
   var cropperObject = new Croppr('#cropper', {
     onCropEnd: setCropprValuesOnCampaign,
     startSize: [100,100,'%'],
