@@ -9,8 +9,8 @@ module SolidusCampaigns
       end
 
       def add_stylesheets
-        append_file 'vendor/assets/stylesheets/spree/backend/all.js', "*= require spree/backend/croppr\n"
-        append_file 'vendor/assets/stylesheets/spree/backend/all.js', "*= require spree/backend/solidus_campaigns\n"
+        append_file 'vendor/assets/stylesheets/spree/backend/all.css', "*= require spree/backend/croppr\n"
+        append_file 'vendor/assets/stylesheets/spree/backend/all.css', "*= require spree/backend/solidus_campaigns\n"
       end
 
 
