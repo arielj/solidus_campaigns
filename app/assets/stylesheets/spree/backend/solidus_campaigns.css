@@ -30,3 +30,12 @@
 #crop_campaign_image_modal .buttons {
   margin-top: 2rem;
 }
+#crop_campaign_image {
+  margin-top: 1rem;
+}
+#campaign_image {
+  margin-bottom: 1rem;
+}
+.croppr-container img {
+  max-height: 80vh;
+}
