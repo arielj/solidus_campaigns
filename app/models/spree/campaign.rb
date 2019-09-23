@@ -22,7 +22,7 @@ class Spree::Campaign < ActiveRecord::Base
   crop_attached_file :image
 
   def self.statuses_for_select
-    ds = I18n.t('campaign.statuses', default: [['Active','Inactive']])
-    [[ds[0], :active], [ds[1], :inactive]]
+    ds = Spree.t('campaign.statuses', default: ['Active','Inactive'])
+    [[ds[:active], :active], [ds[:inactive], :inactive]]
   end
 end

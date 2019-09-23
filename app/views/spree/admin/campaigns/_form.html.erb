@@ -90,7 +90,7 @@
   <div class="col-8">
     <%= form.field_container :status do %>
       <%= form.label :status %> <span class="required">*</span><br />
-      <%= form.select :status, options_for_select(Spree::Campaign.statuses_for_select), {}, class: 'wullwidth status' %>
+      <%= form.select :status, options_for_select(Spree::Campaign.statuses_for_select, form.object.status), {}, class: 'status' %>
       <%= form.error_message_on :status %>
     <% end %>
   </div>

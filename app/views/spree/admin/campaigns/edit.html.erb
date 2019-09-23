@@ -17,15 +17,15 @@
 
 <div class="row campaign_products">
   <div class="col-8">
-    <%= label_tag :products %><br />
+    <%= label_tag Spree::Campaign.human_attribute_name(:products) %><br />
     <table class="table">
       <%- @campaign.products.each do |product| %>
         <tr>
           <td><%= product.id %></td>
           <td><%= product.name %></td>
           <td>
-            <%= link_to t(:show), admin_product_path(product) %>
-            <%= link_to t(:remove), remove_product_admin_campaign_path(@campaign, product_slug: product.slug), method: :patch %>
+            <%= link_to Spree.t(:show), admin_product_path(product) %>
+            <%= link_to Spree.t(:remove), remove_product_admin_campaign_path(@campaign, product_slug: product.slug), method: :patch %>
           </td>
         </tr>
       <% end %>

@@ -17,10 +17,10 @@
     </colgroup>
     <thead>
       <tr>
-        <th class="title"><%= t(:title, scope: 'activerecord.attributes.spree/campaign') %></th>
-        <th class="date"><%= t(:start_at, scope: 'activerecord.attributes.spree/campaign') %></th>
-        <th class="date"><%= t(:end_at, scope: 'activerecord.attributes.spree/campaign') %></th>
-        <th class=""><%= t(:status, scope: 'activerecord.attributes.spree/campaign') %></th>
+        <th class="title"><%= Spree::Campaign.human_attribute_name(:title) %></th>
+        <th class="date"><%= Spree::Campaign.human_attribute_name(:start_at) %></th>
+        <th class="date"><%= Spree::Campaign.human_attribute_name(:end_at) %></th>
+        <th class=""><%= Spree::Campaign.human_attribute_name(:status) %></th>
         <th class="actions"></th>
       </tr>
     </thead>
@@ -29,9 +29,9 @@
       <% @campaigns.each do |campaign| %>
         <tr class="<%= cycle('odd', 'even') %>" id="<%= spree_dom_id campaign %>">
           <td><%= campaign.title %></td>
-          <td><%= l( campaign.start_at) rescue '-' %></td>
-          <td><%= l( campaign.end_at) rescue '-' %></td>
-          <td><%= campaign.status %></td>
+          <td><%= l(campaign.start_at) rescue '-' %></td>
+          <td><%= l(campaign.end_at) rescue '-' %></td>
+          <td><%= t(campaign.status, scope: 'spree.campaign.statuses') %></td>
           <td class="actions">
             <%= link_to_edit campaign, :no_text => true %>
             <%= link_to_delete campaign, :no_text => true %>
@@ -44,7 +44,7 @@
   <%= paginate @campaigns %>
 <% else %>
   <div class="alpha twelve columns no-objects-found">
-    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/campaign')) %>,
+    <%= Spree.t(:no_resource_found, resource: Spree::Campaign.human_attribute_name(:other)) %>,
     <%= link_to Spree.t(:add_one), spree.new_admin_campaign_path %>!
   </div>
 <% end %>
