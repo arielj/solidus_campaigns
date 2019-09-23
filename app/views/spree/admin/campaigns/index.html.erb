@@ -31,7 +31,7 @@
           <td><%= campaign.title %></td>
           <td><%= l(campaign.start_at) rescue '-' %></td>
           <td><%= l(campaign.end_at) rescue '-' %></td>
-          <td><%= t(campaign.status, scope: 'spree.campaign.statuses') %></td>
+          <td><%= t(campaign.status, scope: 'enum.spree.campaign.statuses') %></td>
           <td class="actions">
             <%= link_to_edit campaign, :no_text => true %>
             <%= link_to_delete campaign, :no_text => true %>

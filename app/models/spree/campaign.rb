@@ -22,7 +22,9 @@ class Spree::Campaign < ActiveRecord::Base
   crop_attached_file :image
 
   def self.statuses_for_select
-    ds = Spree.t('campaign.statuses', default: ['Active','Inactive'])
-    [[ds[:active], :active], [ds[:inactive], :inactive]]
+    statuses.map do |st, idx|
+      ds = I18n.t(:active, scope: 'enum.spree.campaign.statuses', default: st.to_s.capitalize)
+      [ds, st]
+    end
   end
 end
