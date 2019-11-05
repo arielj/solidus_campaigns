@@ -23,7 +23,7 @@ class Spree::Campaign < ActiveRecord::Base
 
   def self.statuses_for_select
     statuses.map do |st, idx|
-      ds = I18n.t(:active, scope: 'enum.spree.campaign.statuses', default: st.to_s.capitalize)
+      ds = I18n.t(st, scope: 'enum.spree.campaign.statuses', default: st.to_s.capitalize)
       [ds, st]
     end
   end
