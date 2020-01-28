@@ -12,8 +12,8 @@ class Spree::Campaign < ActiveRecord::Base
 
   scope :for_web, -> {
     scp = active
-    scp = scp.where('start_at IS NOT NULL AND start_at >= ?', Date.today).or(where(start_at: nil))
-    scp = scp.where('end_at IS NOT NULL AND end_at <= ?', Date.today).or(where(end_at: nil))
+    scp = scp.where('start_at IS NOT NULL AND start_at <= ?', Date.today).or(where(start_at: nil))
+    scp = scp.where('end_at IS NOT NULL AND end_at >= ?', Date.today).or(where(end_at: nil))
     scp
   }
 
