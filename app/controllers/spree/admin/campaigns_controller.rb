@@ -18,7 +18,15 @@ class Spree::Admin::CampaignsController < Spree::Admin::ResourceController
     campaign = find_resource
     pids = campaign.products.pluck(:id)
     products = Spree::Product.in_name_or_description(params[:q]).where.not(id: pids).limit(8)
-    render json: products.map{|p| {slug: p.slug, name: p.name, image_url: p.display_image.attachment.url}}.to_json
+    json = products.map do |p|
+      {
+        slug: p.slug,
+        name: p.name,
+        image_url: p.display_image.attachment.url
+      }
+    end.to_json
+
+    render json: json
   end
 
   def find_resource

@@ -17,9 +17,14 @@ class Spree::Campaign < ActiveRecord::Base
     scp
   }
 
-  has_attached_file :image, styles: (CAMPAIGN_IMAGE_STYLES rescue {})
+  has_attached_file :image, styles: (CAMPAIGN_IMAGE_STYLES[:image] rescue {})
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
   crop_attached_file :image
+
+  has_attached_file :mobile_image, styles: (CAMPAIGN_IMAGE_STYLES[:mobile_image] rescue {})
+  validates_attachment_content_type :mobile_image, content_type: /\Aimage\/.*\z/
+  crop_attached_file :mobile_image
+
 
   def self.statuses_for_select
     statuses.map do |st, idx|
