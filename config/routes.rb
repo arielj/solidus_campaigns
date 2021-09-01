@@ -5,6 +5,7 @@ Spree::Core::Engine.routes.draw do
         post :add_product
         patch :remove_product
         get :search_products
+        post :update_positions
       end
     end
   end

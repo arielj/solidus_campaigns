@@ -1,4 +1,7 @@
 class Spree::Campaign < ActiveRecord::Base
+  acts_as_list
+  default_scope -> { order(position: :asc) }
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 
